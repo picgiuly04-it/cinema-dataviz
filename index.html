@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta Tag Standard per Motori di Ricerca -->
+  <title>Fascicolo del Caso: Spendere tanto garantisce un bel film? | D3.js</title>
+  <meta name="description" content="Fascicolo d'indagine su oltre 100 film in D3.js: elementi probatori tra budget, incassi mondiali, ROI e voti del pubblico.">
+  <meta name="author" content="Giulia Pica">
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Telegram) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fascicolo del Caso: Spendere tanto garantisce un bel film?">
+  <meta property="og:description" content="Elementi probatori su budget, incassi e qualità cinematografica: un'indagine visiva in D3.js.">
+  <meta property="og:image" content="https://picgiuly04-it.github.io/cinema-dataviz/preview.png">
+  <meta property="og:url" content="https://picgiuly04-it.github.io/cinema-dataviz/">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spendere tanto garantisce un bel film?">
+  <meta name="twitter:description" content="Indagine su budget, incassi e voti del pubblico con D3.js.">
+  <meta name="twitter:image" content="https://picgiuly04-it.github.io/cinema-dataviz/preview.png">
+
+  <!-- Google Fonts: Playfair Display (Titoli) + Inter (Testi e Dati) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <!-- Foglio di stile -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- D3.js v7 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+  <!-- BARRA SUPERIORE -->
+  <nav class="topbar" aria-label="Controlli fascicolo">
+    <div class="container topbar-inner">
+      <span class="seal-mini">SIGILLO DI SICUREZZA · FASCICOLO CINEMA</span>
+      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Cambia tema chiaro o scuro">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- COPERTINA FASCICOLO D'INDAGINE -->
+  <header class="case-cover">
+    <div class="security-tape top-tape" aria-hidden="true">
+      <span>SIGILLO DI SICUREZZA: NON MANOMETTERE</span>
+      <span>SIGILLO DI SICUREZZA: NON MANOMETTERE</span>
+    </div>
+
+    <div class="hazard-banner">
+      <div class="container hazard-inner">
+        <span class="hazard-title">ELEMENTI PROBATORI</span>
+        <span id="data-status" class="status-pill">Caricamento reperti...</span>
+      </div>
+    </div>
+
+    <div class="security-tape bottom-tape" aria-hidden="true">
+      <span>SIGILLO DI SICUREZZA: NON MANOMETTERE</span>
+      <span>SIGILLO DI SICUREZZA: NON MANOMETTERE</span>
+    </div>
+
+    <div class="container cover-body">
+      <div class="auth-banner">
+        <span>⚠ APERTURA CONSENTITA SOLO AL PERSONALE AUTORIZZATO ⚠</span>
+      </div>
+
+      <div class="red-stamp" aria-hidden="true">INDAGINE BOX OFFICE</div>
+
+      <h1>Spendere tanto garantisce un bel film?</h1>
+      <p class="subtitle">
+        Fascicolo del caso su oltre 100 pellicole: mettiamo a confronto budget di produzione, incassi mondiali, ritorno economico e giudizi del pubblico.
+      </p>
+
+      <!-- Scheda d'archivio in basso stile fascicolo -->
+      <div class="dossier-meta-sheet">
+        <div class="cinema-badge-svg" aria-hidden="true">
+          <svg viewBox="0 0 120 72" width="120" height="72">
+            <rect x="2" y="2" width="116" height="68" rx="6" fill="currentColor" opacity="0.12" stroke="currentColor" stroke-width="1.5"/>
+            <!-- Bobina -->
+            <circle cx="34" cy="36" r="18" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <circle cx="34" cy="36" r="4" fill="currentColor"/>
+            <circle cx="34" cy="25" r="3" fill="currentColor"/>
+            <circle cx="34" cy="47" r="3" fill="currentColor"/>
+            <circle cx="23" cy="36" r="3" fill="currentColor"/>
+            <circle cx="45" cy="36" r="3" fill="currentColor"/>
+            <!-- Popcorn -->
+            <polygon points="68,28 96,28 91,58 73,58" fill="#DC2626" opacity="0.85"/>
+            <circle cx="71" cy="24" r="5" fill="#F59E0B"/>
+            <circle cx="80" cy="21" r="6" fill="#FBBF24"/>
+            <circle cx="90" cy="24" r="5" fill="#F59E0B"/>
+            <circle cx="102" cy="48" r="3.5" fill="#FBBF24"/>
+            <circle cx="107" cy="54" r="3" fill="#FBBF24"/>
+          </svg>
+        </div>
+
+        <div class="meta-fields">
+          <div><strong>Investigatore:</strong> Giulia Pica · Tecniche di animazione digitale · Prof. Belluscio Antonio</div>
+          <div><strong>Fonte dati:</strong> API TMDB (con archivio verificato di riserva, &gt;100 film)</div>
+          <div><strong>Metodo:</strong> Esplorazione aperta senza tesi precostituite</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- BRIEFING -->
+    <section class="evidence-section">
+      <div class="doc-tab">NOTA INTRODUTTIVA</div>
+      <h2>Obiettivi dell'indagine e struttura del fascicolo</h2>
+      <p>
+        I grandi studi investono centinaia di milioni di dollari su singoli titoli, ma un budget elevato non garantisce né l'apprezzamento del pubblico né il ritorno economico. In questo fascicolo analizziamo <strong>oltre 100 film</strong> attraverso tre visualizzazioni interattive in <strong>D3.js</strong>.
+      </p>
+      <div class="questions-box">
+        <h3>Domande sotto indagine:</h3>
+        <ul>
+          <li>Quali film superano la soglia di pareggio (<em>break-even</em>) tra budget e incassi?</li>
+          <li>I film ad alto budget hanno voti mediamente più alti rispetto a quelli a budget ridotto?</li>
+          <li>Chi ottiene il miglior moltiplicatore ROI e quali titoli subiscono le perdite più pesanti?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REPERTO 01 -->
+    <section class="evidence-section">
+      <div class="doc-tab">REPERTO N° 01 · SCATTER PLOT</div>
+      <h2>Budget contro Incassi: chi va in attivo?</h2>
+      <p>
+        Ogni punto è un film (assi in scala logaritmica, espressi in milioni di dollari). La <strong>linea tratteggiata verde</strong> segna il pareggio (Incassi = Budget): sopra i film in attivo, sotto quelli in perdita.
+      </p>
+
+      <div class="evidence-card">
+        <div id="controls-scatter" class="chart-controls"></div>
+        <div id="chart-scatter" class="viz-container"></div>
+        <div id="legend-scatter" class="chart-legend"></div>
+        <p class="chart-note">Passa il mouse o tocca un punto per leggere i dati del film.</p>
+      </div>
+
+      <div class="finding-box">
+        <p>
+          <strong>Riscontro:</strong> I blockbuster si concentrano in alto a destra, ma diversi titoli costosi restano sotto la soglia di pareggio; nel frattempo produzioni più snelle superano ampiamente i costi.
+        </p>
+      </div>
+    </section>
+
+    <!-- REPERTO 02 -->
+    <section class="evidence-section">
+      <div class="doc-tab">REPERTO N° 02 · DISTRIBUZIONE VOTI</div>
+      <h2>I soldi comprano la qualità?</h2>
+      <p>
+        Confronto dei voti (scala 1–10) divisi in quattro fasce di budget. La <strong>barra dorata</strong> indica il voto medio della fascia; i punti sono colorati in base al bilancio economico.
+      </p>
+
+      <div class="evidence-card">
+        <div id="chart-distribution" class="viz-container"></div>
+        <div id="legend-distribution" class="chart-legend"></div>
+        <p class="chart-note">Fasce: Low (&lt;$15M), Medio ($15M–$60M), Alto ($60M–$150M), Blockbuster (&gt;$150M).</p>
+      </div>
+
+      <div class="finding-box">
+        <p>
+          <strong>Riscontro:</strong> La media dei voti rimane vicina tra una fascia e l'altra: spendere di più non alza in modo automatico il voto medio degli spettatori.
+        </p>
+      </div>
+    </section>
+
+    <!-- REPERTO 03 -->
+    <section class="evidence-section">
+      <div class="doc-tab">REPERTO N° 03 · BAR CHART DIVERGENTE</div>
+      <h2>Campioni del ROI contro i grandi flop</h2>
+      <p>
+        Confronto tra i <strong>migliori moltiplicatori ROI</strong> (incassi / budget, a destra in verde) e le <strong>maggiori perdite nette in milioni</strong> (a sinistra in rosso).
+      </p>
+
+      <div class="evidence-card">
+        <div id="chart-roi" class="viz-container"></div>
+        <div id="legend-roi" class="chart-legend"></div>
+        <p class="chart-note">Barre normalizzate su asse divergente per confrontare i due estremi.</p>
+      </div>
+
+      <div class="finding-box">
+        <p>
+          <strong>Riscontro:</strong> I moltiplicatori più alti arrivano spesso da budget contenuti e forte passaparola, mentre i tonfi maggiori colpiscono produzioni molto costose.
+        </p>
+      </div>
+    </section>
+
+    <!-- RAPPORTO FINALE -->
+    <section class="evidence-section closing-section">
+      <div class="doc-tab">RAPPORTO FINALE</div>
+      <h2>Metodologia, conclusioni e crediti</h2>
+      <p>
+        <strong>Metodologia:</strong> I dati provengono dall'API TMDB (con dataset di fallback verificato di oltre 100 film), filtrando i titoli con budget e incassi positivi. Gli assi logaritmici usano intervalli selezionati per evitare sovrapposizioni.
+      </p>
+      <p>
+        <strong>Conclusioni:</strong> Spendere tanto non garantisce un bel film né il successo finanziario: un alto budget amplia scala e visibilità, ma la qualità e la redditività dipendono da fattori ben più ampi.
+      </p>
+
+      <footer class="credits">
+        <h3>Crediti</h3>
+        <ul>
+          <li><strong>API e dati:</strong> <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">The Movie Database (TMDB)</a>.</li>
+          <li><strong>Libreria D3:</strong> <a href="https://d3js.org/" target="_blank" rel="noopener">D3.js v7</a>.</li>
+          <li><strong>Font:</strong> <em>Playfair Display</em> e <em>Inter</em> via Google Fonts.</li>
+        </ul>
+      </footer>
+    </section>
+
+  </main>
+
+  <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
