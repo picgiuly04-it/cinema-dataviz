@@ -74,7 +74,7 @@
 
       <h1>Spendere tanto garantisce un bel film?</h1>
       <p class="subtitle">
-        Fascicolo del caso su oltre 100 pellicole: mettiamo a confronto budget di produzione, incassi mondiali, ritorno economico e giudizi del pubblico.
+        Fascicolo d'indagine su oltre 100 pellicole internazionali: un'esplorazione visiva per verificare se gli investimenti milionari di Hollywood si traducano davvero in incassi sicuri e in film più amati dal pubblico.
       </p>
 
       <!-- Scheda d'archivio in basso stile fascicolo -->
@@ -113,16 +113,19 @@
     <!-- BRIEFING -->
     <section class="evidence-section">
       <div class="doc-tab">NOTA INTRODUTTIVA</div>
-      <h2>Obiettivi dell'indagine e struttura del fascicolo</h2>
+      <h2>Obiettivi dell'indagine e guida alla lettura</h2>
       <p>
-        I grandi studi investono centinaia di milioni di dollari su singoli titoli, ma un budget elevato non garantisce né l'apprezzamento del pubblico né il ritorno economico. In questo fascicolo analizziamo <strong>oltre 100 film</strong> attraverso tre visualizzazioni interattive in <strong>D3.js</strong>.
+        Nel cinema contemporaneo si tende spesso ad associare i grandi investimenti produttivi alla qualità dell'opera e al successo al botteghino. Tuttavia, tra blockbuster da oltre 200 milioni di dollari e film indipendenti realizzati con risorse minime, i dati raccontano una storia molto più sfumata.
+      </p>
+      <p>
+        Questo fascicolo raccoglie e mette a confronto <strong>oltre 100 titoli</strong> (tra grandi classici, cult e uscite recenti), incrociando tre dimensioni chiave per ciascun film: il <strong>budget di produzione</strong>, gli <strong>incassi mondiali al botteghino</strong> (al netto dei costi di marketing e distribuzione) e il <strong>voto medio assegnato dagli spettatori</strong>.
       </p>
       <div class="questions-box">
         <h3>Domande sotto indagine:</h3>
         <ul>
-          <li>Quali film superano la soglia di pareggio (<em>break-even</em>) tra budget e incassi?</li>
-          <li>I film ad alto budget hanno voti mediamente più alti rispetto a quelli a budget ridotto?</li>
-          <li>Chi ottiene il miglior moltiplicatore ROI e quali titoli subiscono le perdite più pesanti?</li>
+          <li>Quali film superano la soglia di pareggio (<em>break-even</em>) tra budget di produzione e incassi?</li>
+          <li>I film ad alto budget ottengono voti mediamente più alti rispetto a quelli realizzati con budget ridotti?</li>
+          <li>Quali produzioni generano il miglior ritorno percentuale (ROI) e quali subiscono le perdite più pesanti?</li>
         </ul>
       </div>
     </section>
@@ -132,19 +135,22 @@
       <div class="doc-tab">REPERTO N° 01 · SCATTER PLOT</div>
       <h2>Budget contro Incassi: chi va in attivo?</h2>
       <p>
-        Ogni punto è un film (assi in scala logaritmica, espressi in milioni di dollari). La <strong>linea tratteggiata verde</strong> segna il pareggio (Incassi = Budget): sopra i film in attivo, sotto quelli in perdita.
+        Questo grafico mette in relazione quanto è costato produrre ciascun film (asse orizzontale) con quanto ha incassato nel mondo (asse verticale). Poiché le cifre spaziano da poche decine di migliaia di dollari fino a quasi tre miliardi, entrambi gli assi usano una <strong>scala logaritmica</strong> in milioni di dollari per rendere leggibili sia i piccoli film sia i colossi.
+      </p>
+      <p>
+        La <strong>linea tratteggiata verde</strong> rappresenta il punto di pareggio (<em>Incassi = Budget</em>): tutti i punti sopra la linea hanno incassato più del costo di produzione, mentre quelli sotto non hanno coperto nemmeno il budget iniziale. Usa i filtri per isolare un singolo genere cinematografico.
       </p>
 
       <div class="evidence-card">
         <div id="controls-scatter" class="chart-controls"></div>
         <div id="chart-scatter" class="viz-container"></div>
         <div id="legend-scatter" class="chart-legend"></div>
-        <p class="chart-note">Passa il mouse o tocca un punto per leggere i dati del film.</p>
+        <p class="chart-note">Passa il mouse o tocca un punto per leggere titolo, anno, budget, incassi e voto.</p>
       </div>
 
       <div class="finding-box">
         <p>
-          <strong>Riscontro:</strong> I blockbuster si concentrano in alto a destra, ma diversi titoli costosi restano sotto la soglia di pareggio; nel frattempo produzioni più snelle superano ampiamente i costi.
+          <strong>Riscontro:</strong> La nuvola di punti mostra una tendenza generale a incassare di più quando si spende di più, ma con forti eccezioni: diversi blockbuster da oltre 150–200 milioni restano vicini o sotto la soglia di pareggio, mentre titoli a basso costo (soprattutto horror e drammi) si spingono molto in alto rispetto alla linea verde.
         </p>
       </div>
     </section>
@@ -154,7 +160,10 @@
       <div class="doc-tab">REPERTO N° 02 · DISTRIBUZIONE VOTI</div>
       <h2>I soldi comprano la qualità?</h2>
       <p>
-        Confronto dei voti (scala 1–10) divisi in quattro fasce di budget. La <strong>barra dorata</strong> indica il voto medio della fascia; i punti sono colorati in base al bilancio economico.
+        Per capire se un budget più alto porti a film più apprezzati dal pubblico, i titoli sono stati suddivisi in <strong>quattro fasce di spesa</strong>: dalle produzioni <em>Low</em> (sotto i 15 milioni) fino ai <em>Blockbuster</em> (oltre 150 milioni).
+      </p>
+      <p>
+        Ogni pallino corrisponde a un film posizionato in base al suo voto medio su TMDB (scala 1–10) e colorato in base al risultato economico (attivo o perdita). La <strong>barra verticale dorata</strong> indica la media dei voti di ciascuna fascia, permettendo un confronto immediato tra i gruppi.
       </p>
 
       <div class="evidence-card">
@@ -165,7 +174,7 @@
 
       <div class="finding-box">
         <p>
-          <strong>Riscontro:</strong> La media dei voti rimane vicina tra una fascia e l'altra: spendere di più non alza in modo automatico il voto medio degli spettatori.
+          <strong>Riscontro:</strong> Le barre dorate restano quasi allineate attorno a una media tra 7,2 e 7,8 in tutte e quattro le categorie: spendere centinaia di milioni non garantisce un gradimento superiore, e i capolavori con voti sopra l'8 compaiono in ogni fascia di budget.
         </p>
       </div>
     </section>
@@ -175,18 +184,21 @@
       <div class="doc-tab">REPERTO N° 03 · BAR CHART DIVERGENTE</div>
       <h2>Campioni del ROI contro i grandi flop</h2>
       <p>
-        Confronto tra i <strong>migliori moltiplicatori ROI</strong> (incassi / budget, a destra in verde) e le <strong>maggiori perdite nette in milioni</strong> (a sinistra in rosso).
+        Guardare solo gli incassi assoluti può ingannare: un film che incassa 200 milioni avendone spesi 15 è un trionfo molto più redditizio di uno che ne incassa 250 avendone spesi 220. Per misurare l'efficienza economica usiamo il <strong>moltiplicatore ROI</strong> (quante volte l'incasso ripaga il budget iniziale).
+      </p>
+      <p>
+        Il grafico contrappone i due estremi del campione: a destra (in verde) i titoli con il <strong>miglior moltiplicatore ROI</strong>, a sinistra (in rosso) i film che hanno registrato le <strong>maggiori perdite nette in milioni di dollari</strong>.
       </p>
 
       <div class="evidence-card">
         <div id="chart-roi" class="viz-container"></div>
         <div id="legend-roi" class="chart-legend"></div>
-        <p class="chart-note">Barre normalizzate su asse divergente per confrontare i due estremi.</p>
+        <p class="chart-note">Barre normalizzate su asse divergente per confrontare efficienza massima e perdite assolute.</p>
       </div>
 
       <div class="finding-box">
         <p>
-          <strong>Riscontro:</strong> I moltiplicatori più alti arrivano spesso da budget contenuti e forte passaparola, mentre i tonfi maggiori colpiscono produzioni molto costose.
+          <strong>Riscontro:</strong> I campioni assoluti del ROI sono produzioni a budget bassissimo (come <em>Paranormal Activity</em> o <em>The Blair Witch Project</em>) capaci di moltiplicare l'investimento iniziale migliaia di volte, mentre i flop più pesanti in valore assoluto colpiscono quasi sempre grandi produzioni ad alto rischio.
         </p>
       </div>
     </section>
@@ -196,10 +208,10 @@
       <div class="doc-tab">RAPPORTO FINALE</div>
       <h2>Metodologia, conclusioni e crediti</h2>
       <p>
-        <strong>Metodologia:</strong> I dati provengono dall'API TMDB (con dataset di fallback verificato di oltre 100 film), filtrando i titoli con budget e incassi positivi. Gli assi logaritmici usano intervalli selezionati per evitare sovrapposizioni.
+        <strong>Metodologia:</strong> I dati provengono dall'API pubblica di TMDB (integrati da un dataset verificato di oltre 100 pellicole rappresentative), includendo esclusivamente film con dati completi e positivi su budget e incassi mondiali. Le visualizzazioni sono costruite in D3.js con scale logaritmiche e filtri interattivi per evitare distorsioni visive dovute ai valori estremi.
       </p>
       <p>
-        <strong>Conclusioni:</strong> Spendere tanto non garantisce un bel film né il successo finanziario: un alto budget amplia scala e visibilità, ma la qualità e la redditività dipendono da fattori ben più ampi.
+        <strong>Conclusioni dell'indagine:</strong> Alla domanda iniziale il fascicolo risponde con un <strong>no motivato</strong>. Un budget elevato aumenta la scala produttiva, gli effetti visivi e la visibilità al botteghino, ma non assicura né la qualità percepita dagli spettatori né la redditività: idee originali e produzioni contenute possono ottenere voti altissimi e ritorni economici molto superiori ai grandi colossi.
       </p>
 
       <footer class="credits">
