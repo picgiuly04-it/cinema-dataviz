@@ -313,6 +313,7 @@ p {
 
 .viz-container {
   width: 100%;
+  overflow: visible;
 }
 
 .chart-legend {
@@ -396,6 +397,7 @@ svg {
   display: block;
   width: 100%;
   height: auto;
+  overflow: visible;
 }
 
 svg text {
@@ -458,11 +460,19 @@ svg text {
 }
 
 @media (max-width: 600px) {
+  .container {
+    padding: 0 14px;
+  }
+
   .evidence-card {
-    padding: 12px;
+    padding: 10px;
   }
 
   .chart-note {
     text-align: left;
+  }
+
+  svg text {
+    font-size: 10px;
   }
 }
