@@ -2,7 +2,7 @@
 // 1. CONFIGURAZIONE API & DATASET FALLBACK
 // ==========================================
 const TMDB_API_KEY = "INSERISCI_TUA_TMDB_API_KEY";
-const MIN_MOVIES_TARGET = 110;
+const MIN_MOVIES_TARGET = 109;
 
 const GENRE_MAP = {
   28: "Azione",
