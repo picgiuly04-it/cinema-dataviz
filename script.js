@@ -306,9 +306,9 @@ function renderScatterChart(movies) {
   const isCompact = containerWidth < 580;
 
   const margin = {
-    top: 22,
-    right: 18,
-    bottom: 50,
+    top: 26,
+    right: isCompact ? 14 : 18,
+    bottom: isCompact ? 54 : 50,
     left: isCompact ? 54 : 68
   };
   const width = Math.max(220, containerWidth - margin.left - margin.right);
@@ -350,7 +350,7 @@ function renderScatterChart(movies) {
 
   svg.append("text")
     .attr("x", width / 2)
-    .attr("y", height + 40)
+    .attr("y", height + (isCompact ? 42 : 40))
     .attr("text-anchor", "middle")
     .style("font-weight", "500")
     .text("Budget di produzione (scala logaritmica)");
@@ -376,8 +376,8 @@ function renderScatterChart(movies) {
     .attr("stroke-dasharray", "5,5");
 
   svg.append("text")
-    .attr("x", Math.min(x(lineEnd) - 6, width - 6))
-    .attr("y", y(lineEnd) - 8)
+    .attr("x", Math.min(x(lineEnd) - 4, width - 4))
+    .attr("y", Math.max(10, y(lineEnd) - (isCompact ? 16 : 8)))
     .attr("text-anchor", "end")
     .style("fill", colors.profit)
     .style("font-weight", "600")
@@ -423,9 +423,9 @@ function renderDistributionChart(movies) {
     top: 24,
     right: 18,
     bottom: 42,
-    left: isCompact ? 112 : 155
+    left: isCompact ? 126 : 155
   };
-  const width = Math.max(200, containerWidth - margin.left - margin.right);
+  const width = Math.max(190, containerWidth - margin.left - margin.right);
   const height = (isCompact ? 290 : 330) - margin.top - margin.bottom;
 
   const svg = container.append("svg")
@@ -556,9 +556,9 @@ function renderRoiChart(movies) {
     top: 14,
     right: isCompact ? 54 : 68,
     bottom: 24,
-    left: isCompact ? 125 : 195
+    left: isCompact ? 134 : 195
   };
-  const width = Math.max(180, containerWidth - margin.left - margin.right);
+  const width = Math.max(175, containerWidth - margin.left - margin.right);
   const height = combined.length * (isCompact ? 26 : 28);
 
   const svg = container.append("svg")
@@ -579,7 +579,7 @@ function renderRoiChart(movies) {
     .attr("class", "axis")
     .call(
       d3.axisLeft(y).tickFormat(name => {
-        const limit = isCompact ? 17 : 26;
+        const limit = isCompact ? 19 : 26;
         return name.length > limit ? name.slice(0, limit - 1) + "…" : name;
       })
     );
